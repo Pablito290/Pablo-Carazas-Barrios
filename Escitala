@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+
+int main(){
+	char si[2];
+	int inverso=18;
+	char opciones[10];
+	int y=0;
+	char original[18];
+	cout<<"Hola Hacker, para acceder a estas opciones necesita una contraseña...\n";//contraseña es 36, esto debido a las 3 filas y 6 columnas
+	gets(si);
+	//cin.getline(original,18,'\n');	// primero obtengo 	la oracion "hola como estan" pero dentro de una sola linea|| uso el cin.getline por que en el cin cuando pongo espacio deja de considerarlo y pues se bugea
+	char matriz[3][6];	//creo una matriz donde vamos a hacer el cambio de mensaje, tambien se podria denominar auxiliar
+	char alterna[6][3];
+	char nueva[18];	//es donde vamos a tener el resultado final 
+	int x=0; //contador
+	
+	if((si[0]=='3')&&(si[1]=='6')){
+		cout<<"\nLogro acceder al sistema, le gustaria encriptar o desencripta? \nEscriba (e) si desea encriptar y (d) si desea desencriptar...   ";
+	gets(opciones);
+	cout<<"\nAhora escriba el mensaje secreto: ";
+	gets(original);	
+	cout<<endl;
+	
+	if(opciones[0]=='e'){
+	
+	for (int i=0;i<3;++i){
+		for(int j=0;j<6;++j){
+			matriz[i][j]=original[y];	//vamos a pasar la cadena a la matriz
+			y++;	
+		}
+	}
+	
+	for (int i=0;i<6;++i){
+		for(int j=0;j<3;++j){
+			nueva[x]=matriz[j][i];
+			x++;
+		}
+	}
+	
+	cout<<"El mensaje encriptado es...\n";
+	for (int i=0;i<18;i++){	//imprime mensaje final
+		cout<<nueva[i];
+	}
+	cout<<"  <----------- ese caracter random que aparece es por que al ingresar datos mediante \n\t\t un gets y no llena los espacios del array se llena con valores aleatoreios, \n\t\tla solucion era usar un cin.getline pero eso me generaba un error aun mas grande"<<endl;
+}
+	else if(opciones[0]=='d'){
+		
+		for (int i=0;i<6;++i){
+		for(int j=0;j<3;++j){
+			alterna[i][j]=original[y];	//vamos a pasar la cadena a la matriz
+			y++;	
+		}
+	}
+	for (int i=0;i<3;++i){
+		for(int j=0;j<6;++j){
+			nueva[x]=alterna[j][i];
+			x++;
+		}
+	}
+	cout<<"El mensaje desencriptado es...\n";	
+	for (int i=0;i<18;i++){	//imprime mensaje final
+		cout<<nueva[i];
+	}
+		
+	}
+}
+cout<<"\nGracias por la revision, hasta luego hacker ;)";
+}
