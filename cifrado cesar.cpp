@@ -16,6 +16,50 @@ class AlgoritmoX{/*
 		for(int i=0;i<mensaje.length();i++){
 			int aux=0;
 			aux=abecedario.find(mensaje[i]);
+			aux=aux+clave;
+			if(aux==clave-1){
+				cifrado.append(1,' ');
+			}
+			else if(aux>25){
+				//aux=aux-26;
+				aux=aux%(26);
+				cifrado.append(1,abecedario[aux]);
+			}
+			else{
+				cifrado.append(1,abecedario[aux]);
+			}
+			//cout<<aux<<" "<<abecedario[aux]<<endl;		 //este cout lo uso para verificar el buen funcionamiento del codigo
+		}
+		
+		return cifrado;	
+	}
+	
+	string descifrado(string mensaje,int clave=3){
+		string cifrado;
+		for(int i=0;i<mensaje.length();i++){
+			int aux=1;
+			aux=abecedario.find(mensaje[i]);
+			aux=aux-clave;
+	
+			if(aux==0-(clave+1)){
+				cifrado.append(1,' ');
+			}
+			else if(aux<0){
+				aux=aux+26;
+				cifrado.append(1,abecedario[aux]);
+			}
+			else{
+				cifrado.append(1,abecedario[aux]);
+			}		
+		}
+		return cifrado;	
+	}
+	/*
+	string cifrado(string mensaje,int clave=4){
+		string cifrado;
+		for(int i=0;i<mensaje.length();i++){
+			int aux=0;
+			aux=abecedario.find(mensaje[i]);		//Esta funcion es una alternativa de cifrado pero  presenta algunos problemas los cuales se me hace confuso, mas facil se me hace de la manera de la funcoin no comentada
 			aux=aux+clave%26;
 			if(aux==clave-1){
 				cifrado.append(1,' ');}
@@ -24,23 +68,8 @@ class AlgoritmoX{/*
 		}
 }
 		return cifrado;	
-	}
+	}*/
 	
-	string descifrado(string mensaje,int clave=3){
-		string cifrado;
-		for(int i=0;i<mensaje.length();i++){
-			int aux=0;
-			aux=abecedario.find(mensaje[i]);
-			aux=aux-clave%26;
-			if(aux==0-(clave+1)){
-				cifrado.append(1,' ');}
-			else{
-			
-			cifrado.append(1,abecedario[aux]);
-		}
-}
-		return cifrado;	
-	}
 };
 
 string cifradoopcional(string mensaje,int clave=3){	//esta funcion la hago para hacer una funcion fuerza bruta y averiguar la clave
@@ -48,16 +77,21 @@ string cifradoopcional(string mensaje,int clave=3){	//esta funcion la hago para 
 		for(int i=0;i<mensaje.length();i++){
 			int aux=0;
 			aux=abecedario.find(mensaje[i]);
-			aux=aux+clave%26;
+			aux=aux+clave;
 			if(aux==clave-1){
-				cifrado.append(1,' ');}
+				cifrado.append(1,' ');
+			}
+			else if(aux>25){
+				aux=aux%(26);
+				cifrado.append(1,abecedario[aux]);
+			}
 			else{
-			cifrado.append(1,abecedario[aux]);
+				cifrado.append(1,abecedario[aux]);
+			}
 		}
-}
+		
 		return cifrado;	
 	}
-	
 	
 int Fuerza_Bruta(string mensaje,string pista){ //lo que hace esta funcion es pedir el mensaje original y el mensaje final
 	if(mensaje.size()==pista.size()){
